@@ -32,7 +32,7 @@ At the end of the command, you should see something like:
 ```
 2018_10_09_11_50_28: digest: sha256:3435701bd31abc2f94d9645acce46540a724daf2453652460ff031206b5c649d size: 5559
 
-Successfully created submission 25
+Successfully created submission SUBMISSION_ID
 
 You can track the progress at: https://challenges.duckietown.org/v3/humans/submissions/SUBMISSION_ID
 ```
