@@ -1,6 +1,6 @@
 # Definition of Submission container
 
-# We start from tensorflow-gpu but you could also use pytorch/pytorch as base image
+# We start from tensorflow-gpu image
 FROM tensorflow/tensorflow:latest-gpu
 
 # from https://github.com/tensorflow/tensorflow/issues/10776
