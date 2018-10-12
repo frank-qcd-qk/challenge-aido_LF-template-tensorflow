@@ -34,7 +34,7 @@ This is going to happen a bit faster now as the image was already built on the *
 At the end of the command, you should see something like:
 
 ```
-2Successfully created submission 37
+Successfully created submission 37
 
 You can track the progress at: https://challenges.duckietown.org/v3/humans/submissions/37
 
