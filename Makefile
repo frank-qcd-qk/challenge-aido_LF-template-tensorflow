@@ -1,3 +1,3 @@
 submit:
 
-	make -C submission submit
+	dts challenges submit
