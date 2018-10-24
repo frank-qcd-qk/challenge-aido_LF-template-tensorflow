@@ -58,15 +58,9 @@ class Submission(ChallengeSolution):
         params = cis.get_challenge_parameters()
         cis.info('Parameters: %s' % params)
 
-        output = {'status': 'success'}
-        try:
-            cis.info('Starting.')
-            solve(params, cis)  # let's try to solve the challenge, exciting ah?
-        except Exception as e:
-            output['status'] = 'failure'
-            output['msg'] = str(e)
+        solve(params, cis)  # let's try to solve the challenge, exciting ah?
 
-        cis.set_solution_output_dict(output)
+        cis.set_solution_output_dict({})
         cis.info('Finished.')
 
 
