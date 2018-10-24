@@ -17,7 +17,7 @@ def solve(params, cis):
     # if you have a model class with a predict function this are likely the only lines you will need to modifiy
     from model import TfInference
     # define observation and output shapes
-    model = TfInference(observation_shape=(1, 120, 160, 3),  # this is the shape of the image we get.
+    model = TfInference(observation_shape=(1, 480, 640, 3),  # this is the shape of the image we get.
                         action_shape=(1, 2),  # we need to output v, omega.
                         graph_location='tf_models/')  # this is the folder where our models are stored.
     # END SUBMISSION
