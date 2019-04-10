@@ -1,6 +1,7 @@
-challenge: aido1_LF1_r3-v3
-protocol: [aido1_remote1-v3, aido1_remote2-v3, aido1_remote3-v3]
-user-label: "Tensorflow template"
+challenge:
+  - aido2_LF_r2-v4
+protocol: aido2_db18_agent_1
+user-label: "Template solution using imitation learning"
 description: |
     This is a simple template for an agent that uses Tensorflow for inference.
 
