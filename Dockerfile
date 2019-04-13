@@ -20,12 +20,12 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
      rm -rf /var/lib/apt/lists/*
 
 # let's create our workspace, we don't want to clutter the container
-RUN mkdir /workspace
+WORKDIR /workspace
 
 # here, we install the requirements, some requirements come by default
 # you can add more if you need to in requirements.txt
-COPY requirements.txt /workspace
-RUN pip install -r /workspace/requirements.txt
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 
 # let's copy all our solution files to our workspace
 # if you have more file use the COPY command to move them to the workspace
@@ -40,4 +40,4 @@ WORKDIR /workspace
 ENV DUCKIETOWN_SERVER=evaluator
 
 # let's see what you've got there...
-CMD python solution.py
+CMD python3 solution.py
