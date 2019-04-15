@@ -1,7 +1,7 @@
 # Definition of Submission container
 
 # We start from tensorflow-gpu image
-FROM tensorflow/tensorflow:latest-gpu
+FROM tensorflow/tensorflow:latest-gpu-py3
 
 # from https://github.com/tensorflow/tensorflow/issues/10776
 # this may not be needed if you use pytorch image
@@ -25,7 +25,7 @@ WORKDIR /workspace
 # here, we install the requirements, some requirements come by default
 # you can add more if you need to in requirements.txt
 COPY requirements.txt .
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # let's copy all our solution files to our workspace
 # if you have more file use the COPY command to move them to the workspace
@@ -40,4 +40,4 @@ WORKDIR /workspace
 ENV DUCKIETOWN_SERVER=evaluator
 
 # let's see what you've got there...
-CMD python3 solution.py
+CMD python solution.py
