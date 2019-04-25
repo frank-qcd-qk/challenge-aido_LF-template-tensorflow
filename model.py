@@ -3,10 +3,6 @@ import tensorflow as tf
 
 l2_lambda = 1e-04
 
-# this line test if there is a GPU available
-# remove if you don't care whether your model runs on a GPU or not
-assert tf.test.is_gpu_available(), "No GPU detected"
-
 
 def _residual_block(x, size, dropout=False, dropout_prob=0.5, seed=None):
     residual = tf.layers.batch_normalization(x)  # TODO: check if the defaults in Tf are the same as in Keras
