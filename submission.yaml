@@ -2,8 +2,9 @@
 # challenge: [c1,c2]
 
 protocol: aido2_db18_agent-z2
-user-label: "challenge-aido_LF-template-tensorflow"
 user-payload: {}
+user-label: "challenge-aido_LF-template-tensorflow - Template solution using imitation learning"
+
 description: |
     This is a simple template for an agent that uses Tensorflow for inference.
 
