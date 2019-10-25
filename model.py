@@ -76,6 +76,8 @@ class TfInference:
 
         model = tf.layers.dense(model, self._action.shape[1])
 
+        model = tf.tanh(model)
+
         return model
 
     def _initialize(self, input_shape, action_shape, storage_location):
