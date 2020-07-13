@@ -118,7 +118,7 @@ WORKDIR /workspace
 
 # here, we install the requirements, some requirements come by default
 # you can add more if you need to in requirements.txt
-COPY requirements.txt .
+COPY requirements.* ./
 RUN pip install -r requirements.txt
 
 # let's copy all our solution files to our workspace
