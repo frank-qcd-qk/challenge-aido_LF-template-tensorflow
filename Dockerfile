@@ -110,6 +110,7 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
          libc-dev\
          git \
          bzip2 \
+         libgl1-mesa-glx \
          python3-tk && \
      rm -rf /var/lib/apt/lists/*
 
