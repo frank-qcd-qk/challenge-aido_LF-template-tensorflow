@@ -10,10 +10,15 @@ repo=challenge-aido_lf-template-tensorflow
 branch=$(shell git rev-parse --abbrev-ref HEAD)
 tag=$(AIDO_REGISTRY)/duckietown/$(repo):$(branch)
 
-build:
+
+update-reqs:
+	pur --index-url $(PIP_INDEX_URL) -r requirements.txt -f -m '*' -o requirements.resolved
+	aido-update-reqs requirements.resolved
+	
+build: update-reqs
 	docker build --pull -t $(tag) $(build_options) .
 
-build-no-cache:
+build-no-cache: update-reqs
 	docker build --pull  -t $(tag) $(build_options)   --no-cache .
 
 push: build
