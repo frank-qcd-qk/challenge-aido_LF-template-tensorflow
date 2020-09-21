@@ -116,6 +116,11 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
 # let's create our workspace, we don't want to clutter the container
 WORKDIR /workspace
 
+
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+RUN echo PIP_INDEX_URL=${PIP_INDEX_URL}
+
 # here, we install the requirements, some requirements come by default
 # you can add more if you need to in requirements.txt
 COPY requirements.* ./
