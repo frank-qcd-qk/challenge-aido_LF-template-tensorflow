@@ -7,4 +7,4 @@ user-payload: {}
 description: |
     This is a simple template for an agent that uses Tensorflow for inference.
 
-    [This code is documented here](https://docs.duckietown.org/DT19/AIDO/out/tensorflow_template.html).
+    [This code is documented here](https://docs.duckietown.org/daffy/AIDO/out/tensorflow_template.html).
