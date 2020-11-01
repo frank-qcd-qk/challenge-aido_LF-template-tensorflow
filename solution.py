@@ -26,7 +26,7 @@ class TensorflowTemplateAgent:
         context.info(f'gpu_device_name: {name!r} AIDO_REQUIRE_GPU = {req!r}')
 
         if req is not None:
-            if name is None:
+            if not name: # None or ''
                 msg = 'Could not find gpu device.'
                 context.error(msg)
                 raise Exception(msg)
