@@ -124,7 +124,7 @@ RUN echo PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # here, we install the requirements, some requirements come by default
 # you can add more if you need to in requirements.txt
-RUN pip3 install -U pip>=20.2
+RUN pip3 install -U "pip>=20.2"
 COPY requirements.* ./
 RUN cat requirements.* > .requirements.txt
 RUN  pip3 install --use-feature=2020-resolver -r .requirements.txt
@@ -140,6 +140,8 @@ WORKDIR /workspace
 
 # DO NOT MODIFY: your submission won't run if you do
 ENV DUCKIETOWN_SERVER=evaluator
+
+# RUN PYTHONPATH=. python3 -c "from solution import *"
 
 # let's see what you've got there...
 ENTRYPOINT ["python", "solution.py"]
