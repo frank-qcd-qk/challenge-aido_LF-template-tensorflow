@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import io
+import os
 
 import numpy as np
 from PIL import Image
@@ -13,6 +14,23 @@ expect_shape = (480, 640, 3)
 
 class TensorflowTemplateAgent:
     def __init__(self, load_model=False, model_path=None):
+        pass
+
+    def init(self, context: Context):
+        context.info('init()')
+        req = os.environ.get('AIDO_REQUIRE_GPU', None)
+
+        import tensorflow as tf
+
+        name = tf.test.gpu_device_name()
+        context.info(f'gpu_device_name: {name!r} AIDO_REQUIRE_GPU = {req!r}')
+
+        if req is not None:
+            if not name: # None or ''
+                msg = 'Could not find gpu device.'
+                context.error(msg)
+                raise Exception(msg)
+
         from model import TfInference
         # define observation and output shapes
         self.model = TfInference(observation_shape=(1,) + expect_shape,
@@ -21,9 +39,6 @@ class TensorflowTemplateAgent:
                                  graph_location='tf_models/')  # this is the folder where our models are
         # stored.
         self.current_image = np.zeros(expect_shape)
-
-    def init(self, context: Context):
-        context.info('init()')
 
     def on_received_seed(self, data: int):
         np.random.seed(data)
