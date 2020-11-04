@@ -1,7 +1,13 @@
-FROM duckietown/dt-machine-learning-base-environment:daffy-amd64
+ARG AIDO_REGISTRY=docker.io
+
+FROM ${AIDO_REGISTRY}/duckietown/dt-machine-learning-base-environment:daffy-amd64
 # let's copy all our solution files to our workspace
 # if you have more file use the COPY command to move them to the workspace
 WORKDIR /submission
+
+
+ARG PIP_INDEX_URL="https://pypi.org/simple"
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 RUN pip3 install -U "pip>=20.2"
 COPY requirements.* ./
