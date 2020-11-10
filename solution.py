@@ -6,32 +6,38 @@ import os
 import numpy as np
 from PIL import Image
 
-from aido_schemas import (Context, DB20Commands, DB20Observations, EpisodeStart, JPGImage,
-                          LEDSCommands, protocol_agent_DB20, PWMCommands, RGB, wrap_direct)
+from aido_schemas import (Context, DB20Commands, DB20Observations, EpisodeStart, JPGImage, LEDSCommands,
+                          logger, protocol_agent_DB20, PWMCommands, RGB, wrap_direct)
+from model import TfInference
 
 expect_shape = (480, 640, 3)
 
 
+def check_tensorflow_gpu():
+    req = os.environ.get('AIDO_REQUIRE_GPU', None)
+
+    import tensorflow as tf
+
+    name = tf.test.gpu_device_name()
+    logger.info(f'gpu_device_name: {name!r} AIDO_REQUIRE_GPU = {req!r}')
+
+    if req is not None:
+        if not name:  # None or ''
+            msg = 'Could not find gpu device.'
+            logger.error(msg)
+            raise Exception(msg)
+
+
 class TensorflowTemplateAgent:
+    current_image: np.ndarray
+    model: TfInference
+
     def __init__(self, load_model=False, model_path=None):
         pass
 
     def init(self, context: Context):
         context.info('init()')
-        req = os.environ.get('AIDO_REQUIRE_GPU', None)
 
-        import tensorflow as tf
-
-        name = tf.test.gpu_device_name()
-        context.info(f'gpu_device_name: {name!r} AIDO_REQUIRE_GPU = {req!r}')
-
-        if req is not None:
-            if not name: # None or ''
-                msg = 'Could not find gpu device.'
-                context.error(msg)
-                raise Exception(msg)
-
-        from model import TfInference
         # define observation and output shapes
         self.model = TfInference(observation_shape=(1,) + expect_shape,
                                  # this is the shape of the image we get.
@@ -82,6 +88,7 @@ def jpg2rgb(image_data: bytes) -> np.ndarray:
 
 
 def main():
+    check_tensorflow_gpu()
     node = TensorflowTemplateAgent()
     protocol = protocol_agent_DB20
     wrap_direct(node=node, protocol=protocol)
